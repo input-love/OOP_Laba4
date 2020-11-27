@@ -1,0 +1,10 @@
+Michael Bulgakov "Master and Margarita" 1967 10
+Nikolay Gogol "Dead Souls" 1835 32
+Michael Bulgakov "Dog's heart" 1925 12
+Nikolay Gogol "Revizor" 1836 102
+Fedor Dostoevsky "Crime and Punishment" 1966 23
+Lev Tolstoy "War and Peace" 1863 58
+Fedor Dostoevsky "Brothers Karamazovi" 1880 228
+Fedor Dostoevsky "Idiot" 1868 1
+Ivan Turgenev "Fathers and Sons" 1860 32
+Alexandr Duma "Graph Monte-Cristo" 1845 0
