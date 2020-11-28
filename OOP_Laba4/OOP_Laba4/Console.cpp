@@ -33,23 +33,15 @@ void Console::start() const {
 			std::cout << "¬ведите им€ автора:" << std::endl;
 			std::cin >> name;
 
-			int the_year_of_publishing;
+			int date;
 			std::cout << "¬ведите год издани€ книги:" << std::endl;
-			std::cin >> the_year_of_publishing;
+			std::cin >> date;
 
-			std::vector<Book>& arr_book = library.get_vector();
-			std::vector<Book>::iterator it = arr_book.begin();
+			std::vector<Book> arr;
+			library.search_by_vector(arr, name, date);
 
-			while (it != arr_book.end()) {
-				it = std::find_if(it, arr_book.end(), fo_name(name));
-				if (it != arr_book.end()) {
-					if ((*it)._the_year_of_publishing >= the_year_of_publishing) {
-						print_menu_book((*it));
-					}
-					it++;
-				} else {
-					break;
-				}
+			for (int i = 0; i < arr.size(); ++i) {
+				print_menu_book(arr[i]);
 			}
 
 			break;

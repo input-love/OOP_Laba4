@@ -14,6 +14,25 @@ void Library::create_map_book() {
 	//...
 }
 
-std::vector<Book>& Library::get_vector() {
+void Library::search_by_vector(std::vector<Book>& arr, std::string name, int date) {
+	std::vector<Book>::iterator it = _arr_book.begin();
+	while (it != _arr_book.end()) {
+		it = std::find_if(it, _arr_book.end(), Fo_name(name));
+		if (it != _arr_book.end()) {
+			if ((*it)._the_year_of_publishing >= date) {
+				arr.push_back(*it);
+			}
+			it++;
+		} else {
+			break;
+		}
+	}
+}
+
+void Library::search_by_map() const {
+	//...
+}
+
+const std::vector<Book>& Library::get_vector() const {
 	return _arr_book;
 }
