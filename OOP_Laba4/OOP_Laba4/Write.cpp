@@ -17,4 +17,5 @@ void Write::write_to_vector(const std::vector<std::vector<std::string>>& arr, st
 		arr_book[i]._the_year_of_publishing = Formatting::formatting(arr[i][arr[i].size() - 2]);
 		arr_book[i]._count = Formatting::formatting(arr[i][arr[i].size() - 1]);
 	}
+	std::sort(arr_book.begin(), arr_book.end());
 }

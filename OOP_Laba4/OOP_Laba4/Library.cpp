@@ -1,6 +1,6 @@
 #include "Library.h"
 
-void Library::create_arr_book() {
+void Library::create_vector_book() {
 	try {
 		std::vector<std::vector<std::string>> arr;
 		ScanFile::scan(arr);
@@ -10,12 +10,10 @@ void Library::create_arr_book() {
 	}
 }
 
-void Library::print_all_book() const {
-	for (int i = 0; i < _arr_book.size(); ++i) {
-		std::cout << "Name: " << _arr_book[i]._name << std::endl;
-		std::cout << "Last Name: " << _arr_book[i]._last_name << std::endl;
-		std::cout << "Book Name: " << _arr_book[i]._book_name << std::endl;
-		std::cout << "Year: " << _arr_book[i]._the_year_of_publishing << std::endl;
-		std::cout << "Count Book: " << _arr_book[i]._count << std::endl << std::endl;
-	}
+void Library::create_map_book() {
+	//...
+}
+
+std::vector<Book>& Library::get_vector() {
+	return _arr_book;
 }

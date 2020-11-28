@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 
-struct Book {
+class Book {
+public:
+	bool operator< (const Book& book) const;
+
 	std::string _name;
 	std::string _last_name;
 	std::string _book_name;
