@@ -1,7 +1,8 @@
 #pragma once
-#include <iostream>
 #include <vector>
+#include <map>
 #include <string>
+#include <algorithm>
 #include "Book.h"
 #include "ScanFile.h"
 #include "Write.h"
@@ -9,11 +10,8 @@
 
 class Library {
 public:
-	void create_vector_book();
-	void create_map_book();
-	void search_by_vector(std::vector<Book>& arr, std::string name, int date);
-	void search_by_map() const;
-	const std::vector<Book>& get_vector() const;
-private:
-	std::vector<Book> _arr_book;
+	virtual ~Library() {}
+	virtual void create() = 0;
+	virtual void search(const std::string& name, int date) = 0;
+	virtual void sort_arr() = 0;
 };

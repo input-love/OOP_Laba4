@@ -4,5 +4,5 @@
 
 class Formatting {
 public:
-	static int formatting(const std::string& word);
+	int formatting(const std::string& word);
 };

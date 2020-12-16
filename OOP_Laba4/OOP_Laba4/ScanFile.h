@@ -4,8 +4,10 @@
 #include <stdexcept>
 #include "Book.h"
 #include "Parser.h"
+#include "Write.h"
+#include "Search.h"
 
 class ScanFile {
 public:
-	static void scan(std::vector<std::vector<std::string>>& arr);
+	void scan(std::vector<std::vector<Book>>& arr_book);
 };

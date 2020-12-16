@@ -1,21 +1,41 @@
 #include "Write.h"
 
-void Write::write_to_vector(const std::vector<std::vector<std::string>>& arr, std::vector<Book>& arr_book) {
-	for (int i = 0; i < arr.size(); ++i) {
-		Book book;
-		arr_book.push_back(book);
+//template<class T>
+void Write::write_to_vector(const std::vector<std::string>& arr_line, std::vector<Book>& arr_book) {
+	Book book;
 
-		arr_book[i]._name = arr[i][0];
-		arr_book[i]._last_name = arr[i][1];
+	book._name = arr_line[0];
+	book._last_name = arr_line[1];
 
-		std::string full_book_name = arr[i][2];
-		for (int j = 3; j < arr[i].size() - 2; ++j) {
-				full_book_name += (" " + arr[i][j]);
-		}
-		arr_book[i]._book_name = full_book_name;
-
-		arr_book[i]._the_year_of_publishing = Formatting::formatting(arr[i][arr[i].size() - 2]);
-		arr_book[i]._count = Formatting::formatting(arr[i][arr[i].size() - 1]);
+	std::string full_book_name = arr_line[2];
+	for (int j = 3; j < arr_line.size() - 2; ++j) {
+		full_book_name += (" " + arr_line[j]);
 	}
-	std::sort(arr_book.begin(), arr_book.end());
+	book._book_name = full_book_name;
+
+	book._the_year_of_publishing = Formatting().formatting(arr_line[arr_line.size() - 2]);
+	book._count = Formatting().formatting(arr_line[arr_line.size() - 1]);
+
+	arr_book.push_back(book);
+}
+
+void Write::write_to_vector(const std::vector<std::string>& arr_line, std::vector<std::vector<Book>>& arr_book) {
+	Book book;
+
+	book._name = arr_line[0];
+	book._last_name = arr_line[1];
+
+	std::string full_book_name = arr_line[2];
+	for (int j = 3; j < arr_line.size() - 2; ++j) {
+		full_book_name += (" " + arr_line[j]);
+	}
+	book._book_name = full_book_name;
+
+	book._the_year_of_publishing = Formatting().formatting(arr_line[arr_line.size() - 2]);
+	book._count = Formatting().formatting(arr_line[arr_line.size() - 1]);
+
+
+	std::vector<Book> arr;
+	arr.push_back(book);
+	arr_book.push_back(arr);
 }

@@ -1,11 +1,12 @@
 #pragma once
-#include <algorithm>
 #include <vector>
 #include <string>
 #include "Book.h"
 #include "Formatting.h"
 
+//template<class T>
 class Write {
 public:
-	static void write_to_vector(const std::vector<std::vector<std::string>>& arr, std::vector<Book>& arr_book);
+	void write_to_vector(const std::vector<std::string>& arr_line, std::vector<Book>& arr_book);
+	void write_to_vector(const std::vector<std::string>& arr_line, std::vector<std::vector<Book>>& arr_book);
 };
