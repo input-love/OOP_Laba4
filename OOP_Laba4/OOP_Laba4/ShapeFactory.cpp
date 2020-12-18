@@ -1,14 +1,13 @@
 #include "ShapeFactory.h"
 
-Library* ShapeFactory::createShape(int type) {
-	switch (type) {
-	case 1:
+Library* ShapeFactory::createShape(int type) 
+{
+	if (!type)
 	{
 		return new Vector();
 	}
-	case 2:
+	else
 	{
 		return new Map();
-	}
 	}
 }

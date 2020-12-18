@@ -3,7 +3,7 @@
 
 class Book {
 public:
-	bool operator < (const Book& book) const; // Проверить нужен ли он вообще
+	bool operator < (const Book& book) const;
 
 	std::string _name;
 	std::string _last_name;

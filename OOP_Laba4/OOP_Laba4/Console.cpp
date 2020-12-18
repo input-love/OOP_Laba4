@@ -7,22 +7,29 @@ Console::~Console()
 
 void Console::start()
 {
-	setlocale(LC_ALL, "Russian");
+	try
+	{
+		int type = dialog_type_arr();
+		_library = ShapeFactory().createShape(type);
+		_library->create();
 
-	dialog_create_arr();
-	dialog_menu();
+		dialog_menu();
+	}
+	catch (const std::exception& exept)
+	{
+		std::cout << exept.what() << std::endl;
+	}
 }
 
-void Console::dialog_create_arr()
+int Console::dialog_type_arr()
 {
 	int type;
 	do
 	{
 		print_create_arr();
 		std::cin >> type;
-	} while (type < 1 || type > 2);
-
-	_library = ShapeFactory().createShape(type);
+	} while (type < 0 || type > 1);
+	return type;
 }
 
 void Console::dialog_menu() const 
@@ -33,18 +40,13 @@ void Console::dialog_menu() const
 		print_menu();
 
 		std::cin >> check;
-
-		switch (check) 
+		if (!check)
 		{
-		case 1:
 			dialog_search();
-			break;
-		case 2:
-			dialog_print_all_book();
-			break;
 		}
+
 		system("pause");
-	} while (check);
+	} while (!check);
 }
 
 void Console::dialog_search() const
@@ -58,19 +60,14 @@ void Console::dialog_search() const
 	int count = arr.size();
 	for (int i = 0; i < count; ++i)
 	{
-		print_all_book(arr[i]);
+		print_book(arr[i]);
 	}
-}
-
-void Console::dialog_print_all_book() const
-{
-	//...
 }
 
 std::string Console::dialog_get_surname() const
 {
 	std::string surname;
-	std::cout << "Введите его фамилию автора: " << std::endl;
+	std::cout << "Введите фамилию автора: " << std::endl;
 	std::cin >> surname;
 	return surname;
 }
@@ -87,8 +84,8 @@ void Console::print_create_arr() const
 {
 	clear_console();
 	std::cout << "-----------------------------" << std::endl;
-	std::cout << "1 - Создать vector" << std::endl;
-	std::cout << "2 - Создать map" << std::endl;
+	std::cout << "0 - Создать vector" << std::endl;
+	std::cout << "1 - Создать map" << std::endl;
 	std::cout << "-----------------------------" << std::endl;
 }
 
@@ -96,14 +93,13 @@ void Console::print_menu() const
 {
 	clear_console();
 	std::cout << "-----------------------------" << std::endl;
-	std::cout << "0 - Закончить работу программы" << std::endl;
-	std::cout << "1 - Ввести критерии поиска, найти книги" << std::endl;
-	std::cout << "2 - Вывести все книги в библиотеке" << std::endl;
+	std::cout << "0 - Найти книги автора" << std::endl;
+	std::cout << "1 - Закончить работу программы" << std::endl;
 	std::cout << "-----------------------------" << std::endl;
 	std::cout << "Что вы хотите сделать?: ";
 }
 
-void Console::print_all_book(const Book& book) const 
+void Console::print_book(const Book& book) const 
 {
 	std::cout << "-----------------------------" << std::endl;
 	std::cout << "Имя: " << book._name << std::endl;

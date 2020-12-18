@@ -1,22 +1,38 @@
 #include "Vector.h"
-#include <iostream> // Убрать потом ( как сделаю норм вывод )
-
-Vector::Vector()
-{
-	create();
-}
 
 void Vector::create()
 {
-	try 
+	std::vector<std::string> arr_line;
+
+	try
 	{
-		ScanFile().scan(_arr);
-		sort_arr();
-	} 
-	catch (const std::exception& exept) 
+		ScanFile().scan(arr_line);
+	}
+	catch (const std::exception& exept)
 	{
 		throw exept;
 	}
+	
+	int count = arr_line.size();
+	for (int i = 0; i < count; ++i)
+	{
+		std::vector<std::string> arr_word;
+		Parser().parser(arr_word, arr_line[i]);
+
+		std::vector<std::vector<Book>>::iterator it = _arr.begin();
+
+		it = std::find_if(_arr.begin(), _arr.end(), Fo_name(arr_word[1]));
+		if (it != _arr.end())
+		{
+			Write().write(arr_word, (*it));
+		}
+		else
+		{
+			Write().write_new_vector(arr_word, _arr);
+		}
+	}
+
+	sort_arr();
 }
 
 void Vector::search(std::vector<Book>& arr, const std::string& name, int date)
