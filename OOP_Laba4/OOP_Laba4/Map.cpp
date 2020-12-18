@@ -10,7 +10,7 @@ void Map::create()
 	//...
 }
 
-void Map::search(const std::string& name, int date)
+void Map::search(std::vector<Book>& arr, const std::string& name, int date)
 {
 	//...
 }

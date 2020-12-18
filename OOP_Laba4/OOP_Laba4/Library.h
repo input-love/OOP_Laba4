@@ -12,6 +12,6 @@ class Library {
 public:
 	virtual ~Library() {}
 	virtual void create() = 0;
-	virtual void search(const std::string& name, int date) = 0;
+	virtual void search(std::vector<Book>& arr, const std::string& name, int date) = 0;
 	virtual void sort_arr() = 0;
 };

@@ -19,11 +19,10 @@ void Vector::create()
 	}
 }
 
-void Vector::search(const std::string& name, int date)
+void Vector::search(std::vector<Book>& arr, const std::string& name, int date)
 {
 	std::vector<std::vector<Book>>::iterator it = _arr.begin();
 
-	//std::vector<Book> arr;
 	it = std::find_if(_arr.begin(), _arr.end(), Fo_name(name));
 	if (it != _arr.end())
 	{
@@ -34,8 +33,7 @@ void Vector::search(const std::string& name, int date)
 			{
 				for (int j = i; j < count; ++j)
 				{
-					std::cout << (*it)[j]._book_name << std::endl;
-					//arr.push_back((*it)[j]);
+					arr.push_back((*it)[j]);
 				}
 				break;
 			}

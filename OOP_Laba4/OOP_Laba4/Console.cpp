@@ -37,15 +37,11 @@ void Console::dialog_menu() const
 		switch (check) 
 		{
 		case 1:
-		{
 			dialog_search();
 			break;
-		}
 		case 2:
-		{
 			dialog_print_all_book();
 			break;
-		}
 		}
 		system("pause");
 	} while (check);
@@ -53,20 +49,38 @@ void Console::dialog_menu() const
 
 void Console::dialog_search() const
 {
-	std::string surname;
-	std::cout << "Введите его фамилию автора: " << std::endl;
-	std::cin >> surname;
+	std::string surname = dialog_get_surname();
+	int date = dialog_get_date();
+	
+	std::vector<Book> arr;
+	_library->search(arr, surname, date);
 
-	int date;
-	std::cout << "Введите год издания книги: " << std::endl;
-	std::cin >> date;
-
-	_library->search(surname, date);
+	int count = arr.size();
+	for (int i = 0; i < count; ++i)
+	{
+		print_all_book(arr[i]);
+	}
 }
 
 void Console::dialog_print_all_book() const
 {
-	//Что-то надо тут придумать!
+	//...
+}
+
+std::string Console::dialog_get_surname() const
+{
+	std::string surname;
+	std::cout << "Введите его фамилию автора: " << std::endl;
+	std::cin >> surname;
+	return surname;
+}
+
+int Console::dialog_get_date() const
+{
+	int date;
+	std::cout << "Введите год издания книги: " << std::endl;
+	std::cin >> date;
+	return date;
 }
 
 void Console::print_create_arr() const

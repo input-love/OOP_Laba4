@@ -14,6 +14,8 @@ private:
 	void dialog_menu() const;
 	void dialog_search() const;
 	void dialog_print_all_book() const;
+	std::string dialog_get_surname() const;
+	int dialog_get_date() const;
 	void print_create_arr() const;
 	void print_menu() const;
 	void print_all_book(const Book& book) const;
