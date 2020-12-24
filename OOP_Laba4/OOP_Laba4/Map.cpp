@@ -22,20 +22,29 @@ void Map::create()
 		auto it = _arr.find(arr_word[1]);
 		if (it != _arr.end())
 		{
-			Write().write(arr_word, it->second);
+			Book book;
+			Write().write(arr_word, book);
+
+			it->second.push_back(book);
 		}
 		else
 		{
-			Write().write_new_map(arr_word, _arr);
+			Book book;
+			std::vector<Book> arr;
+
+			Write().write(arr_word, book);
+			arr.push_back(book);
+
+			_arr.emplace(book._last_name, arr);
 		}
 	}
 
 	sort_arr();
 }
 
-void Map::search(std::vector<Book>& arr, const std::string& name, int date)
+void Map::search(std::vector<Book>& arr, const std::string& surname, int date)
 {
-	auto it = _arr.find(name);
+	auto it = _arr.find(surname);
 	if (it != _arr.end())
 	{
 		int count = it->second.size();
@@ -50,6 +59,30 @@ void Map::search(std::vector<Book>& arr, const std::string& name, int date)
 				break;
 			}
 		}
+	}
+}
+
+void Map::delete_book(const std::string& surname, const std::string& name_book)
+{
+	auto it_map = _arr.find(surname);
+	if (it_map != _arr.end())
+	{
+		std::vector<Book>::iterator it_book = (*it_map).second.begin();
+		it_book = std::find_if((*it_map).second.begin() , (*it_map).second.end(), SearchNameBook(name_book));
+
+		if (it_book != (*it_map).second.end())
+		{
+			(*it_map).second.erase(it_book);
+		}
+	}
+}
+
+void Map::delete_book_by_writer(const std::string& surname)
+{
+	auto it = _arr.find(surname);
+	if (it != _arr.end())
+	{
+		_arr.erase(it);
 	}
 }
 

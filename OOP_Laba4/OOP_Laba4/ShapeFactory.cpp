@@ -2,12 +2,11 @@
 
 Library* ShapeFactory::createShape(int type) 
 {
-	if (!type)
+	switch (type)
 	{
+	case 1:
 		return new Vector();
-	}
-	else
-	{
+	case 2:
 		return new Map();
 	}
 }
