@@ -3,7 +3,9 @@
 
 class Book {
 public:
-	bool operator < (const Book& book) const;
+	Book() = default;
+	Book(const Book& book);
+	Book(const std::string& name, const std::string& surname, const std::string& book_name, int date, int count);	
 
 	std::string _name;
 	std::string _last_name;

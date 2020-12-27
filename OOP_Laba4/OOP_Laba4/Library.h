@@ -1,23 +1,27 @@
 #pragma once
 #include <vector>
 #include <map>
+#include <set>
 #include <string>
-#include <algorithm>
-#include <stdexcept>
 #include "Book.h"
-#include "ScanFile.h"
-#include "Parser.h"
-#include "Write.h"
-#include "SearchSurname.h"
-#include "SearchNameBook.h"
 
 class Library {
 public:
-	virtual ~Library() {}
-	virtual void create() = 0;
-	virtual void search(std::vector<Book>& arr, const std::string& surname, int date) = 0;
-	virtual void delete_book(const std::string& surname, const std::string& name_book) = 0;
-	virtual void delete_book_by_writer(const std::string& surname) = 0;
+	void add_book(const Book& book);
+
+	void search_by_name(std::vector<Book>& arr, const std::string& name);
+	void search_by_surname(std::vector<Book>& arr, const std::string& surname);
+	void search_by_book_name(std::vector<Book>& arr, const std::string& book_name);
+	void search_by_date(std::vector<Book>& arr, const int date);
+
+	int get_size_library() const;
+
+	const Book& operator [] (int id) const;
 private:
-	virtual void sort_arr() = 0;
+	int _last_id;
+	std::map<int, Book> _books;
+	std::map<std::string, std::set<int>> _index_by_name;
+	std::map<std::string, std::set<int>> _index_by_surname;
+	std::map<std::string, std::set<int>> _index_by_book_name;
+	std::map<int, std::set<int>> _index_by_date;
 };

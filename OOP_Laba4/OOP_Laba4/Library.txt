@@ -7,5 +7,4 @@ Lev Tolstoy "War and Peace" 1863 58
 Fedor Dostoevsky "Brothers Karamazovi" 1880 228
 Fedor Dostoevsky "Idiot" 1868 1
 Ivan Turgenev "Fathers and Sons" 1860 32
-Andrew Samardak "Fat" 2077 3228
 Alexandr Duma "Graph Monte-Cristo" 1845 0

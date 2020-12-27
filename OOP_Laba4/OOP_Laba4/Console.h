@@ -1,9 +1,12 @@
 #pragma once
 #include <iostream>
-#include <cstdlib>
+#include <vector>
+#include <string>
 #include <stdexcept>
 #include "Library.h"
-#include "ShapeFactory.h"
+#include "ScanFile.h"
+#include "Parser.h"
+#include "Write.h"
 
 class Console {
 public:
@@ -11,19 +14,19 @@ public:
 	void start();
 private:
 	void dialog_menu() const;
+	void dialog_add_book() const;
 	void dialog_search() const;
-	void dialog_delete_book() const;
-	void dialog_delete_book_by_writer() const;
+	void dialog_print_all_book() const;
 
-	int dialog_type_arr();
+	std::string dialog_get_name() const;
 	std::string dialog_get_surname() const;
-	std::string dialog_get_name_book() const;
+	std::string dialog_get_book_name() const;
 	int dialog_get_date() const;
+	int dialog_get_count() const;
 
-	void print_create_arr() const;
 	void print_menu() const;
+	void print_choice_search() const;
 	void print_book(const Book& book) const;
-	void clear_console() const;
 
-	Library* _library = nullptr;
+	Library* _library;
 };
