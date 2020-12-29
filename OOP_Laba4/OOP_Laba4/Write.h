@@ -6,5 +6,5 @@
 
 class Write {
 public:
-	void write(const std::vector<std::string>& arr, Book& book);
+	void write(const std::vector<std::string>& arr, Book* book);
 };

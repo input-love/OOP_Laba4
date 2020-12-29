@@ -19,7 +19,7 @@ void Console::start()
 			std::vector<std::string> arr_word;
 			Parser().parser(arr_word, arr_line[i]);
 
-			Book book;
+			Book* book = new Book();
 			Write().write(arr_word, book);
 
 			_library->add_book(book);
@@ -59,6 +59,11 @@ void Console::dialog_menu() const
 			dialog_print_all_book();
 			break;
 		}
+		case 4:
+		{
+			dialog_delete_book();
+			break;
+		}
 		default:
 			check = 0;
 		}
@@ -75,7 +80,7 @@ void Console::dialog_add_book() const
 	int date = dialog_get_date();
 	int count = dialog_get_count();
 
-	Book book(name, surname, book_name, date, count);
+	Book* book = new Book(name, surname, book_name, date, count);
 	_library->add_book(book);
 }
 
@@ -86,7 +91,7 @@ void Console::dialog_search() const
 	int check;
 	std::cin >> check;
 
-	std::vector<Book> arr;
+	std::vector<Book*> arr;
 	switch (check)
 	{
 	case 1:
@@ -130,6 +135,10 @@ void Console::dialog_print_all_book() const
 	}
 }
 
+void Console::dialog_delete_book()
+{
+
+}
 
 std::string Console::dialog_get_name() const
 {
@@ -192,13 +201,13 @@ void Console::print_choice_search() const
 	std::cout << "4. Найти по дате её публикации" << std::endl;
 }
 
-void Console::print_book(const Book& book) const
+void Console::print_book(const Book* book) const
 {
 	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "Имя: " << book._name << std::endl;
-	std::cout << "Фамилия: " << book._last_name << std::endl;
-	std::cout << "Название книги: " << book._book_name << std::endl;
-	std::cout << "Год написания книги: " << book._the_year_of_publishing << std::endl;
-	std::cout << "Количество книг в библиотеке: " << book._count << std::endl << std::endl;
+	std::cout << "Имя: " << book->_name << std::endl;
+	std::cout << "Фамилия: " << book->_last_name << std::endl;
+	std::cout << "Название книги: " << book->_book_name << std::endl;
+	std::cout << "Год написания книги: " << book->_the_year_of_publishing << std::endl;
+	std::cout << "Количество книг в библиотеке: " << book->_count << std::endl << std::endl;
 	std::cout << "-----------------------------------" << std::endl;
 }

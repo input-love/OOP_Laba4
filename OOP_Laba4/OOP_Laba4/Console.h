@@ -17,6 +17,7 @@ private:
 	void dialog_add_book() const;
 	void dialog_search() const;
 	void dialog_print_all_book() const;
+	void dialog_delete_book();
 
 	std::string dialog_get_name() const;
 	std::string dialog_get_surname() const;
@@ -26,7 +27,7 @@ private:
 
 	void print_menu() const;
 	void print_choice_search() const;
-	void print_book(const Book& book) const;
+	void print_book(const Book* book) const;
 
 	Library* _library;
 };
